@@ -24,6 +24,9 @@
         <variable
             name="onClickListener"
             type="android.view.View.OnClickListener" />
+        <variable
+            name="buttonOnClick"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +63,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@={user.name}"
+            android:text="@={user.name,default=qidong}"
+            android:onClick="@{(view)->buttonOnClick.onClick(view)}"
             app:layout_constraintLeft_toLeftOf="@id/et_name"
             app:layout_constraintTop_toBottomOf="@id/et_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>

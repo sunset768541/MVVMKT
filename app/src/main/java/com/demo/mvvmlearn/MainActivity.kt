@@ -1,5 +1,6 @@
 package com.demo.mvvmlearn
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,12 +15,16 @@ import com.demo.mvvmlearn.util.LogUtil
 import com.demo.mvvmlearn.viewmodel.MyViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-class MainActivity : AppCompatActivity() ,View.OnClickListener{
+
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val binding  = DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
+        val binding:ActivityMainBinding  = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.buttonOnClick = View.OnClickListener {
+            startActivity(Intent(this, LiveDataTestActivity::class.java))
+        }
 //        binding.textStr = "1000"
 //        val sbo = ObservableField("我是第一份")
 //        binding.user = User(sbo)
@@ -34,8 +39,9 @@ class MainActivity : AppCompatActivity() ,View.OnClickListener{
     }
 
     override fun onClick(v: View?) {
-        Log.d("我","点击了View")
+        Log.d("我", "点击了View")
     }
+
     suspend fun performRequest(request: Int): String {
         delay(1000) // 模仿长时间运行的异步工作
         return "response $request"
@@ -46,6 +52,7 @@ class MainActivity : AppCompatActivity() ,View.OnClickListener{
         val myViewModel = ViewModelProviders.of(this).get(MyViewModel::class.java)
         Log.i("MyViewModel的相关", "onStart ==> " + myViewModel.hashCode())
     }
+
     override fun onResume() {
         super.onResume()
         val myViewModel = ViewModelProviders.of(this).get(MyViewModel::class.java)
