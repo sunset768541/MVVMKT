@@ -5,5 +5,7 @@ import androidx.databinding.Bindable
 import androidx.databinding.ObservableField
 
 data class User (  var name: ObservableField<String>): BaseObservable() {
-
+        fun setName( name:String){
+            this.name.set(name)
+        }
 }

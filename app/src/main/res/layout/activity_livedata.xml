@@ -6,6 +6,9 @@
         <variable
             name="onlyLive"
             type="String" />
+        <variable
+            name="user"
+            type="com.demo.mvvmlearn.model.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,10 +16,20 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/tv_livedata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{onlyLive}"
+            android:text="@{onlyLive,default=Livedata}"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.name,default=Databinding}"
+            app:layout_constraintTop_toBottomOf="@+id/tv_livedata"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
